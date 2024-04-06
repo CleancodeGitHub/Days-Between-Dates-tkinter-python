@@ -1,25 +1,32 @@
-from tkinter import *
+
+# #It appears that the ttkbootstrap module is being used to define the style for this project. This module provides additional styling options for tkinter
+applications, allowing for a more customized appearance and user experience. It is common to import the Style class from ttkbootstrap in order to apply the desired 
+styling to GUI elements in the project.
+# 
+
+#==================================
+import tkinter as tk
 from tkinter import ttk
+from ttkbootstrap import Style
 
 # Create the root window
-root = Tk()
+root = tk.Tk()
 root.title("Days Between Dates")
 root.eval("tk::PlaceWindow . center")
 root.geometry("1000x600")
 root.maxsize(1100, 700)
 root.configure(bg='#e6ffe6')  # Light green background color
 
-# Create a ttk style object
-style = ttk.Style()
-style.theme_use('clam')
+# Create a ttkbootstrap style object
+style = Style(theme='minty')
 
 # Global variables for the Entry widgets
-entry1 = Entry(root, bd=5, width=10, font=("Arial", 24, "bold"), justify='center', relief="sunken")
-entry2 = Entry(root, bd=5, width=10, font=("Arial", 24, "bold"), justify='center', relief="sunken")
-entry3 = Entry(root, bd=5, width=10, font=("Arial", 24, "bold"), justify='center', relief="sunken")
-entry4 = Entry(root, bd=5, width=10, font=("Arial", 24, "bold"), justify='center', relief="sunken")
-entry5 = Entry(root, bd=5, width=10, font=("Arial", 24, "bold"), justify='center', relief="sunken")
-entry6 = Entry(root, bd=5, width=10, font=("Arial", 24, "bold"), justify='center', relief="sunken")
+entry1 = ttk.Entry(root, style='success.TEntry', font=("Arial", 24, "bold"), justify='center')
+entry2 = ttk.Entry(root, style='success.TEntry', font=("Arial", 24, "bold"), justify='center')
+entry3 = ttk.Entry(root, style='success.TEntry', font=("Arial", 24, "bold"), justify='center')
+entry4 = ttk.Entry(root, style='success.TEntry', font=("Arial", 24, "bold"), justify='center')
+entry5 = ttk.Entry(root, style='success.TEntry', font=("Arial", 24, "bold"), justify='center')
+entry6 = ttk.Entry(root, style='success.TEntry', font=("Arial", 24, "bold"), justify='center')
 
 # Function to calculate the number of days between two dates
 def calculate():
@@ -54,28 +61,25 @@ for i, (label_text, entry) in enumerate(zip(input_labels, entries)):
     label.grid(row=i % 3, column=3*(i // 3), padx=10, pady=10)
     entry.grid(row=i % 3, column=3*(i // 3) + 1, padx=10, pady=10)
 
-# Create the "Calculate" button
-button = Button(
+# Configure the style for the 'primary.TButton'
+style = ttk.Style()
+style.configure('primary.TButton', font=('Helvetica', 22, 'bold'), foreground='white', background='blue')
+
+# Create the "Calculate" button with improved style
+button = ttk.Button(
     root, text="Calculate",
-    width=25,
-    height=3,
-    bg="blue",
-    fg="yellow",
-    activebackground="red",
-    activeforeground="blue",
-    command=calculate
+    command=calculate,
+    width=15,
+    style='primary.TButton'
 )
 button.grid(row=3, column=1, columnspan=3, padx=10, pady=10)
 
 # Create label for result
-label4 = Label(
+label4 = ttk.Label(
     root,
     text="Days",
     font=("Verdana", 26, "normal"),
-    fg="white",
-    bg="red",
-    relief="flat",
-    width=9  # Set width to make it wider
+    style='success.TLabel'
 )
 label4.grid(row=3, column=0, padx=10, pady=10)
 
